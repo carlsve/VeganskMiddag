@@ -2,7 +2,7 @@
   "name": "veganskmiddag",
   "version": "1.0.0",
   "description": "slumpar fram vegansk middag",
-  "main": "scrape_recipes.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
