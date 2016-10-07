@@ -85,7 +85,6 @@ app.listen(8080);
 console.log('Express app started on port %d', 8080);
 console.log("type 'help' for list of commands\ntype 'scrape' to setup ./database");
 
-//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
 //promise function, resolves a recipe from its index in ./database
 //with level db
 var getRecipeName = function(index) {
@@ -98,26 +97,24 @@ var getRecipeName = function(index) {
   });
 }
 
-//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
 //promise function, resolves a link from its index in ./database
 //with level db
 var getRecipeLink = function(index) {
 
   return new Promise(function(resolve, reject) {
 
-    db.get(("linkIndex" + index.toString()), function(err, link) {
+    Database.get(("linkIndex" + index.toString()), function(err, link) {
       resolve(link);
     })
   });
 }
 
-//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
 //promise function, resolves size of database (based on index)
 var getAmountOfRecipes = function() {
 
   return new Promise(function(resolve, reject) {
 
-    db.get("numberOfRecipes", function (err, amount) {
+    Database.get("numberOfRecipes", function (err, amount) {
     resolve(amount);
   });
 });
