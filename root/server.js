@@ -14,7 +14,8 @@ POTENTIAL PROBLEMS:
 var express = require('express');
 var app = express();
 var recipes = require('./scrape_recipes.js');
-var Database = require();
+var DatabasePackage = require('levelup');
+var Database = DatabasePackage('./database');
 
 // Register ejs as .html. If we did
 // not call this, we would need to
