@@ -12,10 +12,10 @@ POTENTIAL PROBLEMS:
 
 
 var express = require('express');
-var app = express();
 var recipes = require('./scrape_recipes.js');
 var DatabasePackage = require('levelup');
 var Database = DatabasePackage('./database');
+var app = express();
 
 // Register ejs as .html. If we did
 // not call this, we would need to
@@ -49,18 +49,17 @@ var recipeLink = "";
 
 app.get('/', function(req, res) {
 
-  recipes.getAmountOfRecipes().then(function(amount) {
+  getAmountOfRecipes().then(function(amount) {
 
     randomnumber = Math.floor(Math.random() * amount);
     console.log("\nSent:\nrandom index position: " + randomnumber + " from a total index of: " + amount);
 
-    return recipes.getRecipeName(randomnumber);
   }).then(function(recipe) {
 
     recipeName = recipe;
     console.log("name: " + recipeName);
 
-    return recipes.getRecipeLink(randomnumber)
+    return getRecipeLink(randomnumber)
   }).then(function(link) {
 
     recipeLink = link;
@@ -68,7 +67,7 @@ app.get('/', function(req, res) {
 
     if (recipeName === undefined || recipeName === null) {
 
-      recipeName = "Inga recept i databasen, eller ingen databas, testa att skriva 'scrape' i konsolen";
+      recipeName = "Error! Inga recept i databasen, eller ingen databas.";
     }
 
     res.render('index', {
@@ -85,3 +84,41 @@ app.get('/', function(req, res) {
 app.listen(8080);
 console.log('Express app started on port %d', 8080);
 console.log("type 'help' for list of commands\ntype 'scrape' to setup ./database");
+
+//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
+//promise function, resolves a recipe from its index in ./database
+//with level db
+var getRecipeName = function(index) {
+
+  return new Promise(function(resolve, reject) {
+
+    db.get(("recipeIndex" + index.toString()), function(err, recipe) {
+      resolve(recipe);
+    })
+  });
+}
+
+//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
+//promise function, resolves a link from its index in ./database
+//with level db
+var getRecipeLink = function(index) {
+
+  return new Promise(function(resolve, reject) {
+
+    db.get(("linkIndex" + index.toString()), function(err, link) {
+      resolve(link);
+    })
+  });
+}
+
+//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
+//promise function, resolves size of database (based on index)
+var getAmountOfRecipes = function() {
+
+  return new Promise(function(resolve, reject) {
+
+    db.get("numberOfRecipes", function (err, amount) {
+    resolve(amount);
+  });
+});
+}

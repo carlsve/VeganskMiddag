@@ -232,43 +232,7 @@ var storeScrapedRecipes = function(listOfScrapedRecipes, startIndex) {
 //Extra functions to be exported to server.js/
 //////////////////////////////////////////////
 
-//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
-//promise function, resolves a recipe from its index in ./database
-//with level db
-var getRecipeName = function(index) {
 
-  return new Promise(function(resolve, reject) {
-
-    db.get(("recipeIndex" + index.toString()), function(err, recipe) {
-      resolve(recipe);
-    })
-  });
-}
-
-//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
-//promise function, resolves a link from its index in ./database
-//with level db
-var getRecipeLink = function(index) {
-
-  return new Promise(function(resolve, reject) {
-
-    db.get(("linkIndex" + index.toString()), function(err, link) {
-      resolve(link);
-    })
-  });
-}
-
-//EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
-//promise function, resolves size of database (based on index)
-var getAmountOfRecipes = function() {
-
-  return new Promise(function(resolve, reject) {
-
-    db.get("numberOfRecipes", function (err, amount) {
-    resolve(amount);
-  });
-});
-}
 
 //EXTERNAL_FUNCTION, THIS FUNCTION IS CALLED FROM: server.js
 //outputs the content of vegan_links.json to consolt
