@@ -1,17 +1,17 @@
-## Vegansk Scraper
+## Vegansk Middag
 
-Den veganska scrapern skrapar veganska hemsidor efter namn på recept med medföljande länk.
-Recept och receptlänk läggs in i en databas.
+Servern slumpar fram recept att laga till middag, alla recept är veganska.
 
-### Användning:
+installera node_modules med npm install  
 
-En scraper som använder Node js.  
-Installera dependencies med npm install i terminalen  
+#### Server:
 
+starta med node server.js
+
+#### Scrapertool:  
 För att skrapa en enskild hemsida, skriv (i terminalen):  
 $ node scrape_single_website.js "website name"  
 "website name" är någon hemsidas namn till exempel "vegoteket"
-
 
 #### package dependencies:
   "ejs": "^2.4.2",  
