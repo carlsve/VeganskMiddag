@@ -6,11 +6,11 @@ installera node_modules med npm install
 
 #### Server:
 
-starta med node server.js
+starta med $ node server.js
 
 #### Scrapertool:  
 För att skrapa en enskild hemsida, skriv (i terminalen):  
-$ node scrape_single_website.js "website name"  
+$ node scrape_single_website.js "website name"
 "website name" är någon hemsidas namn till exempel "vegoteket"
 
 #### package dependencies:
