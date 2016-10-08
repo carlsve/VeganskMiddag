@@ -21,11 +21,11 @@ $ node scrape_single_website.js "website name"
   "x-ray":  "lastest"
 
 #### Buggar:
-- matklubben och mytaste ger double callback
-- vegoteket och vegomatsedel har slutat funka
+- mytaste ger double callback
+- vegoteket och vegomatsedel ger tom array
 
 #### Att-göra:
-- automatisera databashanteringen
+- automatisera skrapningen
 
 ##### Löpande:
 - Hitta fler hemsidor att skrapa
