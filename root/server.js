@@ -91,6 +91,17 @@ var getRecipeLink = function(index) {
   });
 }
 
+/*
+Get the l
+*/
+var getListOfScrapedWebsites = function() {
+  return new Promise(function(resolve, reject) {
+    Database.get("sitelist", function(err, siteList) {
+      resolve(siteList);
+    });
+  });
+}
+
 //promise function, resolves size of database (based on index)
 var getAmountOfRecipes = function() {
   return new Promise(function(resolve, reject) {
