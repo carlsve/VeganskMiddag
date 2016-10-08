@@ -1,16 +1,3 @@
-/*
-TODO:
--add functionality for scraping multiple pages in one website
--add functionality for updating the require(vegan_links.json) and get new items
--make website responsive and style it
--maybe add functionality for adding websites with command line when server is running.
-
-POTENTIAL PROBLEMS:
-
--unsure if scrapeUnscrapedRecipes works correctly, will probably start spazzing out when adding new web sites.
-*/
-
-
 var express = require('express');
 var DatabasePackage = require('levelup');
 var Database = DatabasePackage('./database');
@@ -87,9 +74,7 @@ console.log("type 'help' for list of commands\n");
 //promise function, resolves a recipe from its index in ./database
 //with level db
 var getRecipeName = function(index) {
-
   return new Promise(function(resolve, reject) {
-
     Database.get(), function(err, recipe) {
       resolve(recipe);
     })
@@ -99,22 +84,18 @@ var getRecipeName = function(index) {
 //promise function, resolves a link from its index in ./database
 //with level db
 var getRecipeLink = function(index) {
-
   return new Promise(function(resolve, reject) {
-
     Database.get(), function(err, link) {
       resolve(link);
-    })
+    });
   });
 }
 
 //promise function, resolves size of database (based on index)
 var getAmountOfRecipes = function() {
-
   return new Promise(function(resolve, reject) {
-
     Database.get("numberofrecipes", function (err, amount) {
-    resolve(amount);
+      resolve(amount);
+    });
   });
-});
 }
