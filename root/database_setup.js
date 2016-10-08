@@ -10,28 +10,19 @@ var amountOfScrapedRecipes = 0;
 
 Database.createReadStream()
     .on('data', function(data) {
-        if (data['key'].includes("recipeamt")) {
-          siteList.push(data['key']);
-        }
-        if (data['key'].includes("numberofrecipes") || data['key'].includes("sitelist")) {
-          console.log(data.key + ": " + data.value);
-        }
-    })
-    .on('close', function () {
-      var index = siteList.length;
-
-      for (var key in siteList) {
-        Database.get(siteList[key], function(err, amount) {
-          amountOfScrapedRecipes += parseInt(amount, 10);
-          if (index == 0) {
-            Database.put('numberofrecipes', amountOfScrapedRecipes, function(err) {
-              Database.put('sitelist', siteList, function(err) {
-                console.log("successfull storage!");
-                Database.close();
-              });
-            });
-          }
-          index -= 1;
-        });
+      if (data.key.includes('link')) {
+        amountOfScrapedRecipes += 1;
       }
+      if (data.key.includes("recipeamt")) {
+        siteList.push(data.key);
+      }
+    })
+    .on('close', function() {
+      console.log("Process finished, found " + amountOfScrapedRecipes + " links.");
+      Database.put('numberofrecipes', amountOfScrapedRecipes, function(err) {
+        Database.put('sitelist', siteList, function(err) {
+          console.log("successfully stored amountOfScrapedRecipes and siteList!");
+          Database.close();
+        });
+      });
     });
