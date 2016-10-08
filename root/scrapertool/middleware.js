@@ -40,7 +40,7 @@ var rawScrapeDataToDbOps = function(folderName) {
 
         recipeAmountOps = {
           type: 'put',
-          key: folderName,
+          key: folderName + "recipeamt",
           value: indexedRecipes
         };
 
