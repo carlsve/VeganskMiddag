@@ -22,7 +22,6 @@ $ node scrape_single_website.js "website name"
 
 #### Buggar:
 - mytaste ger double callback
-- vegomatsedel ger tom array
 
 #### Att-göra:
 - automatisera skrapningen

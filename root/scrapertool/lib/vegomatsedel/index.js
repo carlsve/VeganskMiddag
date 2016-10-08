@@ -3,8 +3,8 @@ var Xray = require("x-ray");
 var xray = Xray();
 
 var internals = {
-  recipeId: ".article",
-  recipeNamesId: "ul li a",
+  recipeId: "div#article ul li",
+  recipeNamesId: "a",
   recipeLinksId: "a@href"
 }
 
