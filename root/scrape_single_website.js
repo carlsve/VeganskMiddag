@@ -28,7 +28,10 @@ OpsFromMiddleWare.rawScrapeDataToDbOps(websiteName[0]).then(function(ops) {
             console.log("Found these scraped websites: " + siteList);
             Database.put('numberofrecipes', amountOfScrapedRecipes, function(err) {
               Database.put('sitelist', siteList, function(err) {
-                console.log("successfully stored amountOfScrapedRecipes and siteList!");
+                console.log("successfully stored amountOfScrapedRecipes: "
+                    + amountOfScrapedRecipes
+                    + ", and siteList: "
+                    + siteList);
                 Database.close();
               });
             });
