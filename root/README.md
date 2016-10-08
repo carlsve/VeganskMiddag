@@ -13,11 +13,6 @@ För att skrapa en enskild hemsida, skriv (i terminalen):
 $ node scrape_single_website.js "website name"  
 "website name" är någon hemsidas namn till exempel "vegoteket"
 
-#### database_setup
-
-Denna är viktig för att sätta upp antal objekt i databasen, för server.js
-Obligatorisk användning efter scrapertoolen.
-
 #### package dependencies:
   "ejs": "^2.4.2",  
   "express": "^4.13.4",  
