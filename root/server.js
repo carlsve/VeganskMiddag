@@ -12,7 +12,6 @@ POTENTIAL PROBLEMS:
 
 
 var express = require('express');
-var recipes = require('./scrape_recipes.js');
 var DatabasePackage = require('levelup');
 var Database = DatabasePackage('./database');
 var app = express();
@@ -83,7 +82,7 @@ app.get('/', function(req, res) {
 
 app.listen(8080);
 console.log('Express app started on port %d', 8080);
-console.log("type 'help' for list of commands\ntype 'scrape' to setup ./database");
+console.log("type 'help' for list of commands\n");
 
 //promise function, resolves a recipe from its index in ./database
 //with level db
@@ -91,7 +90,7 @@ var getRecipeName = function(index) {
 
   return new Promise(function(resolve, reject) {
 
-    db.get(("recipeIndex" + index.toString()), function(err, recipe) {
+    Database.get(), function(err, recipe) {
       resolve(recipe);
     })
   });
@@ -103,7 +102,7 @@ var getRecipeLink = function(index) {
 
   return new Promise(function(resolve, reject) {
 
-    Database.get(("linkIndex" + index.toString()), function(err, link) {
+    Database.get(), function(err, link) {
       resolve(link);
     })
   });
@@ -114,7 +113,7 @@ var getAmountOfRecipes = function() {
 
   return new Promise(function(resolve, reject) {
 
-    Database.get("numberOfRecipes", function (err, amount) {
+    Database.get("numberofrecipes", function (err, amount) {
     resolve(amount);
   });
 });
