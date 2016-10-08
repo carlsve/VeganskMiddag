@@ -22,10 +22,11 @@ $ node scrape_single_website.js "website name"
 
 #### Buggar:
 - mytaste ger double callback
-- vegoteket och vegomatsedel ger tom array
+- vegomatsedel ger tom array
 
 #### Att-göra:
 - automatisera skrapningen
 
 ##### Löpande:
 - Hitta fler hemsidor att skrapa
+- vegoteket är tillfälligt nere, håll uppmärksamhet på när det kickar igång.
