@@ -5,9 +5,8 @@ var Xray = require("x-ray");
 var xray = Xray();
 
 var internals = {
-  recipeId: ".recipe_card",
-  recipeNamesId: ".recipe-card__title p",
-  recipeLinksId: "@data-url"
+  recipeNamesId: "p",
+  recipeLinksId: "p"
 }
 
 var scrapeWebsite = function() {
@@ -20,8 +19,7 @@ var scrapeWebsite = function() {
     }])(function(err, obj) {
 
       if (err) { reject(err); }
-
-      resolve(obj);
+      else { resolve(obj); }
     })
   });
 }
