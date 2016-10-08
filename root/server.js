@@ -29,23 +29,32 @@ app.use(express.static(__dirname + '/styles'));
 
 
 // Dummy users
-var randomnumber;
+var randomIndex = 0;
+var pendingWebsite = "";
+var siteList = [];
 var recipeName = "";
 var recipeLink = "";
 
 app.get('/', function(req, res) {
 
-  getAmountOfRecipes().then(function(amount) {
+  getListOfScrapedWebsites().then(function(rawSiteListValue) {
 
-    randomnumber = Math.floor(Math.random() * amount);
-    console.log("\nSent:\nrandom index position: " + randomnumber + " from a total index of: " + amount);
+    siteList = rawSiteListValue.split(",");
+    pendingWebsite = siteList[Math.floor(Math.random() * siteList.length)]
+    console.log("\nChosen website " + pendingWebsite + ", from list of " + siteList);
 
+    return getAmountOfRecipesFromWebsite(pendingWebsite)
+  }).then(function(amount) {
+
+    randomIndex = Math.floor(Math.random() * amount);
+
+    return getRecipeName(pendingWebsite, randomIndex)
   }).then(function(recipe) {
 
     recipeName = recipe;
     console.log("name: " + recipeName);
 
-    return getRecipeLink(randomnumber)
+    return getRecipeLink(pendingWebsite, randomIndex)
   }).then(function(link) {
 
     recipeLink = link;
@@ -73,9 +82,9 @@ console.log("type 'help' for list of commands\n");
 
 //promise function, resolves a recipe from its index in ./database
 //with level db
-var getRecipeName = function(index) {
+var getRecipeName = function(website, index) {
   return new Promise(function(resolve, reject) {
-    Database.get(), function(err, recipe) {
+    Database.get((website + index), function(err, recipe) {
       resolve(recipe);
     })
   });
@@ -83,9 +92,9 @@ var getRecipeName = function(index) {
 
 //promise function, resolves a link from its index in ./database
 //with level db
-var getRecipeLink = function(index) {
+var getRecipeLink = function(website, index) {
   return new Promise(function(resolve, reject) {
-    Database.get(), function(err, link) {
+    Database.get((website + "link" + index), function(err, link) {
       resolve(link);
     });
   });
@@ -103,9 +112,9 @@ var getListOfScrapedWebsites = function() {
 }
 
 //promise function, resolves size of database (based on index)
-var getAmountOfRecipes = function() {
+var getAmountOfRecipesFromWebsite = function(website) {
   return new Promise(function(resolve, reject) {
-    Database.get("numberofrecipes", function (err, amount) {
+    Database.get((website + "recipeamt"), function (err, amount) {
       resolve(amount);
     });
   });
