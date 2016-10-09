@@ -1,4 +1,3 @@
-// GER DOUBLE CALLBACK, vet ej vad problemet är
 
 var mapping = require("./mapping.json");
 var Xray = require("x-ray");
@@ -6,7 +5,7 @@ var xray = Xray();
 
 var internals = {
   recipeId: "article",
-  recipeNamesId: "a",
+  recipeNamesId: "a img@alt",
   recipeLinksId: "a@href"
 }
 
@@ -20,8 +19,10 @@ var scrapeWebsite = function() {
     }])(function(err, obj) {
 
       if (err) { reject(err); }
-      else { resolve(obj); }
+
+      resolve(obj);
     })
+
   });
 }
 

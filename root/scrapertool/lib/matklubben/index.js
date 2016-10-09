@@ -1,4 +1,3 @@
-// GER DOUBLE CALLBACK, vet ej vad problemet är
 
 var mapping = require("./mapping.json");
 var Xray = require("x-ray");
