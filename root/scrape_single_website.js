@@ -1,7 +1,7 @@
 var DatabasePackage = require('levelup');
 var Database = DatabasePackage('./database');
 
-var OpsFromMiddleWare = require('./scrapertool/middleware.js');
+var OpsFromMiddleWare = require('./scrapertool/raw_data_converter.js');
 
 const websiteName = process.argv.slice(2);
 
