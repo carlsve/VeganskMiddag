@@ -5,7 +5,8 @@ var Xray = require("x-ray");
 var xray = Xray();
 
 var internals = {
-  recipeId: "div",
+  paginate: [".mainmenu li a"],
+  recipeId: ".receptlista li",
   recipeNamesId: "a",
   recipeLinksId: "a@href"
 }
@@ -17,7 +18,7 @@ var scrapeWebsite = function() {
     xray(mapping["links"][0], internals.recipeId, [{
         recipeName: internals.recipeNamesId,
         recipeLink: internals.recipeLinksId
-    }])(function(err, obj) {
+    }]).paginate(internals.paginate)(function(err, obj) {
 
       if (err) { reject(err); }
       else { resolve(obj); }

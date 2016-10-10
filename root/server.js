@@ -101,7 +101,7 @@ var getRecipeLink = function(website, index) {
 }
 
 /*
-Get the l
+Get the list of the websites that are scraped
 */
 var getListOfScrapedWebsites = function() {
   return new Promise(function(resolve, reject) {
