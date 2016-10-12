@@ -26,6 +26,7 @@ app.set('index', __dirname + '/views');
 app.set('view engine', 'html');
 
 app.use(express.static(__dirname + '/styles'));
+app.use(express.static(__dirname + '/images'));
 
 
 // Dummy users

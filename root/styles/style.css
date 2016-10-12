@@ -10,6 +10,11 @@ shamlessly stolen from https://github.com/Jam3/nice-color-palettes
 html,
 body {
   height: 100%;
+  background-image: url("background01.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100%;
 }
 
 body {
@@ -21,6 +26,7 @@ body {
 }
 
 h1 {
+  padding-top: 20px;
   margin-top: 0;
   margin-bottom: 6px;
   font-size: 40px;
@@ -43,7 +49,15 @@ a:active {
   color: #c0d860;
 }
 
+p {
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
 .page {
+  background-color: #f0f0d8;
+  border-radius: 25px;
+  opacity: 0.6;
   position: relative;
   top: 46%;
   transform: translateY(-50%);

@@ -22,8 +22,11 @@ $ node scrape_single_website.js "website name"
 
 #### Buggar:
 - mytaste ger double callback
+- vegania är en nightmare, fixa
 
 #### Att-göra:
+- fixa stilen
+- fler bilder
 - automatisera skrapningen
 
 ##### Löpande:
