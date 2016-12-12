@@ -6,23 +6,23 @@ var xray = Xray();
 
 var internals = {
   recipeId: "div",
-  recipeNamesId: "a",
-  recipeLinksId: "a@href"
-}
+  recipeNamesId: ".recipe-card__content a",
+  recipeLinksId: ".recipe-card__content a@href"
+};
 
 var scrapeWebsite = function() {
 
   return new Promise(function(resolve, reject) {
 
-    xray(mapping["links"][0], internals.recipeId, [{
+    xray(mapping.links[0], internals.recipeId, [{
         recipeName: internals.recipeNamesId,
         recipeLink: internals.recipeLinksId
     }])(function(err, obj) {
 
       if (err) { reject(err); }
       else { resolve(obj); }
-    })
+    });
   });
-}
+};
 
-module.exports.scrapeWebsite = scrapeWebsite;
+module.exports = scrapeWebsite;

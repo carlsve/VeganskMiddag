@@ -1,6 +1,6 @@
-var testLog = require("./index.js");
+var scrapeWebsite = require("./index.js");
 
-testLog.scrapeWebsite().then(function(err, log) {
+scrapeWebsite().then(function(err, log) {
   if (err) { console.log(err); }
   console.log(log);
 })

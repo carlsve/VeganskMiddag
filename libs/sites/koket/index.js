@@ -17,7 +17,7 @@ var scrapeWebsite = function() {
         recipeName: internals.recipeNamesId,
         recipeLink: internals.recipeLinksId
     }])(function(err, obj) {
-      
+
       if (err) { reject(err); }
       resolve(obj);
     });

@@ -6,28 +6,21 @@ var internals = {
   recipeId: ".receptlista li",
   recipeNamesId: "a",
   recipeLinksId: "a@href"
-}
-
-var index = mapping.links.length;
+};
 
 var scrapeWebsite = function() {
   return new Promise(function(resolve, reject) {
-    var obj = scrapeLink(index).then(function(result) {
-      index -= 1;
-      if (index == 0) {
-        resolve(result);
-      }
-      else {
-        resolve(result.concat(scrapeWebsite(index)));
-      }
-    })
+    Promise.all(mapping.links.map(url => scrapeLink(url)))
+      .then(result => resolve(result.reduce(function(a, b) {
+          return a.concat(b); // reduce just merges all arrays of recipes into one array
+      })));
   });
-}
+};
 
-var scrapeLink = function(index) {
+var scrapeLink = function(url) {
   return new Promise(function(resolve, reject) {
 
-    xray(mapping.links[index], internals.recipeId, [{
+    xray(url, internals.recipeId, [{
         recipeName: internals.recipeNamesId,
         recipeLink: internals.recipeLinksId
     }])(function(err, obj) {
@@ -35,7 +28,7 @@ var scrapeLink = function(index) {
       else { resolve(obj); }
     });
   });
-}
+};
 
 
-module.exports.scrapeWebsite = scrapeWebsite;
+module.exports = scrapeWebsite;
