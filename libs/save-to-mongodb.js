@@ -25,7 +25,7 @@ scraper().then((recipeData) => {
     .map(recipe => schemifyData(recipe))
     .map(recipe => new Promise((resolve, reject) => recipe.save(err => {
       if (err) {
-        reject(err);
+        resolve();
       } else {
         resolve();
       }
