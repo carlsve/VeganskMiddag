@@ -21,18 +21,12 @@ like so [[koketrecipes...], [matklubbenrecipes...]]
 scrapeRecipes scrapes all websites that are available and
 returns a recipeData array of recipe objects.
 */
-var scrapeRecipes = function() {
-    return new Promise(function(resolve, reject) {
+var scrapeRecipes = () => new Promise((resolve, reject) => {
 
-        Promise.all(sites.map(site => {
-            return scrape(site);
-        })).then(function(recipeData) {
-            resolve(recipeData.reduce(function(a, b) {
-                return a.concat(b); // reduce just merges all arrays of recipes into one array
-            }));
-        });
-    });
-};
+    Promise.all(sites.map(site => scrape(site)))
+        .then(recipeData => resolve(recipeData.reduce((a, b) => a.concat(b)) // reduce just merges all arrays of recipes into one array
+        ));
+});
 
 /*
 This scrapes one website for vegan recipes.
@@ -41,11 +35,12 @@ returns the result
 */
 function scrape(site) {
     var scrapeSite = require(__dirname + "/" + site + "/index");
-    return scrapeSite().then(function(result) {
+    return scrapeSite().then(result => {
         result = result.map(recipe => {
             recipe.site = site;
             return recipe;
         });
+        console.log("scraped ", result.length, " recipes from ", site)
         return result;
     });
 }
