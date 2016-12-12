@@ -15,6 +15,9 @@
     "mongoose-simple-random": "^0.3.3",
     "x-ray": "latest"
   },
+  "engine": {
+    "node": "4.2.x"
+  },
   "author": "karlPet",
   "license": "ISC"
 }
