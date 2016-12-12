@@ -20,14 +20,22 @@ mongoose.connect(mongodbUri, options);
 This method has problems. close with ctrl-z
 TODO: find a batch save package, because mongoose is bad.
 */
-
-scraper().then(function(recipeData) {
-    recipeData.map(recipe => schemifyData(recipe))
-        .map(recipe => {
-            recipe.save(function() {
-                return;
-            });
-        });
+scraper().then((recipeData) => {
+  const batch = recipeData
+    .map(recipe => schemifyData(recipe))
+    .map(recipe => new Promise((resolve, reject) => recipe.save(err => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    })))
+  return Promise.all(batch)
+    .then(() => process.exit())
+    .catch((err) => {
+      console.error('nån save fucka ur, så hela skiten faila. fick felet', err);
+      process.exit();
+    });
 });
 
 function schemifyData(recipe) {
