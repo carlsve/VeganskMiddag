@@ -40,7 +40,7 @@ function scrape(site) {
             recipe.site = site;
             return recipe;
         });
-        console.log("scraped ", result.length, " recipes from ", site)
+        console.log("scraped ", result.length, " recipes from ", site);
         return result;
     });
 }

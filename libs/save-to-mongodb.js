@@ -16,11 +16,8 @@ var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 
 var mongodbUri = 'mongodb://admin:admin@ds053186.mlab.com:53186/veganrecipes';
 
 mongoose.connect(mongodbUri, options);
-/*
-This method has problems. close with ctrl-z
-TODO: find a batch save package, because mongoose is bad.
-*/
-scraper().then((recipeData) => {
+
+scraper().then(recipeData => {
   const batch = recipeData
     .map(recipe => schemifyData(recipe))
     .map(recipe => new Promise((resolve, reject) => recipe.save(err => {
@@ -29,7 +26,7 @@ scraper().then((recipeData) => {
       } else {
         resolve();
       }
-    })))
+    })));
   return Promise.all(batch)
     .then(() => process.exit())
     .catch((err) => {
