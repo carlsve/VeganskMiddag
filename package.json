@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "slumpar fram vegansk middag",
   "scripts": {
-    "start": "node app"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "connect-flash": "latest",
