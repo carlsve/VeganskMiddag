@@ -2,18 +2,19 @@
   "name": "veganskmiddag",
   "version": "1.0.0",
   "description": "slumpar fram vegansk middag",
-  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "dependencies": {
-    "ejs": "^2.4.2",
-    "express": "^4.13.4",
-    "leveldown": "latest",
-    "levelup": "latest",
+    "connect-flash": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "mongodb": "latest",
+    "mongoose": "latest",
+    "mongoose-simple-random": "^0.3.3",
     "x-ray": "latest"
   },
-  "keywords": [],
   "author": "karlPet",
   "license": "ISC"
 }

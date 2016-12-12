@@ -1,5 +1,16 @@
-#### Vad ska det bli för vegansk middag idag?
+# Vegansk Middag
 
-Slumpar fram veganska recept från en databas.
+Vegansk Middag sends a random recipe (name and link) that has been scraped
+from various vegan websites to the user.
 
-Databasen har länkar och recept till hemsidor som skrapats på information.
+Scraper is included in [libs/](./libs/).
+
+##### (INSERT IMAGE HERE)
+
+Written in Node js, uses MongoLab for persistent storage.
+
+### Dependencies:
+- express
+- mongoose
+- xray
+- ejs
