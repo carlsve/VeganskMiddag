@@ -22,6 +22,7 @@ scraper().then(recipeData => {
     .map(recipe => schemifyData(recipe))
     .map(recipe => new Promise((resolve, reject) => recipe.save(err => {
       if (err) {
+        console.log(recipe, "Was not saved. Ignore if error is duplicate entries", err);
         resolve();
       } else {
         resolve();
@@ -30,10 +31,14 @@ scraper().then(recipeData => {
   return Promise.all(batch)
     .then(() => process.exit())
     .catch((err) => {
-      console.error('nån save fucka ur, så hela skiten faila. fick felet', err);
+      console.error('save error', err);
       process.exit();
     });
 });
+
+function saveToDB(recipe) {
+
+}
 
 function schemifyData(recipe) {
     return new Recipe({

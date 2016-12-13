@@ -12,18 +12,17 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get("/", (req, res, next) => {
-    Recipe.findRandom((err, recipe) => {
-        if (err) { console.log(err); }
-        else {
-            console.log("Sent data: " + recipe);
-            res.render('index', {
-                link: recipe[0].url,
-                recipe: recipe[0].name,
-                title: recipe[0].name
-            });
-        }
-    });
-});
+router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Sent data: " + recipe);
+        res.render('index', {
+            link: recipe[0].url,
+            recipe: recipe[0].name,
+            title: recipe[0].name
+        });
+    }
+}));
 
 module.exports = router;
