@@ -12,6 +12,9 @@ router.use((req, res, next) => {
     next();
 });
 
+/*
+This is the route for the main page of the webiste.
+*/
 router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     if (err) {
         console.log(err);
