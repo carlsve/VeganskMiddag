@@ -1,5 +1,6 @@
-var testLog = require("./index.js");
+var scrapeWebsite = require("./index.js");
 
-testLog.scrapeWebsite().then(function(log) {
+scrapeWebsite().then(function(log) {
   console.log(log);
-})
+  console.log("size: ", log.length);
+});

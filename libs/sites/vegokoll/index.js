@@ -3,27 +3,28 @@ var Xray = require("x-ray");
 var xray = Xray();
 
 var internals = {
-  paginate: ".pager-next a@href",
-  recipeId: ".title",
-  recipeNamesId: "a",
-  recipeLinksId: "a@href"
-}
+    paginate: "li.pager-next a@href",
+    recipeId: ".title",
+    recipeNamesId: "a",
+    recipeLinksId: "a@href"
+};
 
-var scrapeWebsite = function() {
+var scrapeWebsite = () => new Promise((resolve, reject) => {
 
-  return new Promise(function(resolve, reject) {
+    xray(mapping.links[0], internals.paginate)((err, obj) => {
+        console.log(obj, obj.substring(35, 36));
+    });
 
-    xray(mapping["links"][0], internals.recipeId, [{
+    xray(mapping.links[0], internals.recipeId, [{
         recipeName: internals.recipeNamesId,
         recipeLink: internals.recipeLinksId
-    }]).paginate(internals.paginate)(function(err, obj) {
+    }]).paginate(internals.paginate)((err, obj) => {
+        if (err) {
+            reject(err);
+        }
 
-      if (err) { reject(err); }
+        resolve(obj);
+    });
+});
 
-      resolve(obj);
-    })
-
-  });
-}
-
-module.exports.scrapeWebsite = scrapeWebsite;
+module.exports = scrapeWebsite;
