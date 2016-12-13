@@ -13,7 +13,8 @@
     "mongodb": "latest",
     "mongoose": "latest",
     "mongoose-simple-random": "^0.3.3",
-    "x-ray": "latest"
+    "x-ray": "latest",
+    "underscore": "latest"
   },
   "engine": {
     "node": "4.2.x"

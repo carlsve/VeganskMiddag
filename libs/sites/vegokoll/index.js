@@ -1,5 +1,7 @@
 var mapping = require("./mapping.json");
 var Xray = require("x-ray");
+var _ = require("underscore");
+
 var xray = Xray();
 
 var internals = {
@@ -11,20 +13,23 @@ var internals = {
 
 var scrapeWebsite = () => new Promise((resolve, reject) => {
 
-    xray(mapping.links[0], internals.paginate)((err, obj) => {
-        console.log(obj, obj.substring(35, 36));
-    });
-
-    xray(mapping.links[0], internals.recipeId, [{
-        recipeName: internals.recipeNamesId,
-        recipeLink: internals.recipeLinksId
-    }]).paginate(internals.paginate)((err, obj) => {
-        if (err) {
-            reject(err);
-        }
-
-        resolve(obj);
+    Promise.all(_.range(28).map(pageindex => scrapePage("http://www.vegokoll.se/recept?page=" + pageindex + "&tid=50"))).then(result => {
+        resolve(result.reduce((a, b) => a.concat(b)));
     });
 });
+
+function scrapePage(url) {
+    return new Promise((resolve, reject) => {
+        xray(url, internals.recipeId, [{
+            recipeName: internals.recipeNamesId,
+            recipeLink: internals.recipeLinksId
+        }])((err, obj) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(obj);
+        });
+    });
+}
 
 module.exports = scrapeWebsite;
