@@ -14,6 +14,8 @@ router.use((req, res, next) => {
 
 /*
 This is the route for the main page of the webiste.
+findRandom is a package, check models/recipe-model.js
+for the package call.
 */
 router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     if (err) {
