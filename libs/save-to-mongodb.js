@@ -25,7 +25,7 @@ var options = {
     }
 };
 
-var mongodbUri = 'mongodb://admin:admin@ds053186.mlab.com:53186/veganrecipes';
+var mongodbUri = 'mongodb://localhost:27017/test';
 
 mongoose.connect(mongodbUri, options);
 
