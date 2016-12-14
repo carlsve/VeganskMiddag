@@ -6,13 +6,13 @@ var xray = Xray();
 
 var internals = {
   recipeId: "div",
-  recipeNamesId: ".recipe-card__content a",
-  recipeLinksId: ".recipe-card__content a@href"
+  recipeNamesId: " a",
+  recipeLinksId: "a@href"
 };
 
-var scrapeWebsite = function() {
+var scrapeWebsite = () => {
 
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
 
     xray(mapping.links[0], internals.recipeId, [{
         recipeName: internals.recipeNamesId,
