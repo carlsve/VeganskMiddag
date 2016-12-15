@@ -10,10 +10,6 @@ shamlessly stolen from https://github.com/Jam3/nice-color-palettes
 html,
 body {
   height: 100%;
-  background-image: url("background01.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
   background-size: 100%;
 }
 
