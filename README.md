@@ -1,5 +1,7 @@
 # Vegansk Middag
 
+[Vegansk Middag hosted at Heroku](https://veganskmiddag.herokuapp.com)
+
 Vegansk Middag sends a random recipe (name and link) that has been scraped
 from various vegan websites to the user.
 
