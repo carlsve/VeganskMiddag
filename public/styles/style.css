@@ -53,7 +53,6 @@ p {
 .page {
   background-color: #f0f0d8;
   border-radius: 25px;
-  opacity: 0.6;
   position: relative;
   top: 46%;
   transform: translateY(-50%);
