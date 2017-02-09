@@ -30,4 +30,13 @@ router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     }
 }));
 
+router.get("/api", (req, res, next) => Recipe.findRandom((err, recipe) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Sent api jsondata: ", recipe);
+    res.status(200).json({ recipe });
+  }
+}));
+
 module.exports = router;
