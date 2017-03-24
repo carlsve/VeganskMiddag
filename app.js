@@ -16,7 +16,7 @@ var app = express();
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 
-var mongodbUri = 'mongodb://admin:admin@ds053186.mlab.com:53186/veganrecipes';
+var mongodbUri = 'mongodb://admin:admin@ds141450.mlab.com:41450/veganrecipes';
 
 mongoose.connect(mongodbUri, options);
 app.set("port", process.env.PORT || 3000);

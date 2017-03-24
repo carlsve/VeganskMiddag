@@ -14,6 +14,7 @@ TODO: id should probably not be used, read up on gettig random database element
 var recipeSchema = mongoose.Schema({
   name: { type: String, required: true },
   url: { type: String, required: true, unique: true },
+  imgurl: { type: String, required: false},
   site: { type: String, require: true },
   createdAt: { type: Date, default: Date.now }
 });
