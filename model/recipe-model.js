@@ -15,6 +15,7 @@ var recipeSchema = mongoose.Schema({
   name: { type: String, required: true },
   url: { type: String, required: true, unique: true },
   imgurl: { type: String, required: false},
+  rate: {type:Number, default: 0},
   site: { type: String, require: true },
   createdAt: { type: Date, default: Date.now }
 });
@@ -32,6 +33,20 @@ recipeSchema.methods.getRecipe = function () {
     site: this.site
   };
 };
+
+recipeSchema.methods.ratePos = function(id){
+  Recipe.update(
+        { _id: id },
+        { $inc: { rate: 1 } }
+    );
+}
+
+recipeSchema.methods.rateNeg = function(id){
+  Recipe.update(
+        { _id: id },
+        { $inc: { rate: -1 } }
+    );
+}
 
 /*
 We have to plugin a package to the mongoose model, so we can later

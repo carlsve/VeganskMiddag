@@ -30,6 +30,24 @@ router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     }
 }));
 
+router.get("/ratepos",function(req,res){
+  var id = req.body.id;
+  Recipe.ratePos(id);
+
+  // TODO IF FAIL DONT RESPONSE 200
+  res.status(200).json({success:true });
+
+});
+
+router.get("/rateneg",function(req,res){
+  var id = req.body.id;
+  Recipe.rateNeg(id);
+  // TODO IF FAIL DONT RESPONSE 200
+  res.status(200).json({success:true });
+
+});
+
+
 router.get("/api", (req, res, next) => Recipe.findRandom((err, recipe) => {
   if (err) {
     console.log(err);
