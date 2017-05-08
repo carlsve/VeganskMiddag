@@ -31,16 +31,16 @@ router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
 }));
 
 router.get("/ratepos",function(req,res){
-  var id = req.body.id;
+  var id = req.query.id;
   Recipe.ratePos(id);
 
-  // TODO IF FAIL DONT RESPONSE 200
+  // TODO IF FAIL DONT RESPONSE 200 men vad kan faila frågar du dig. INGET SÄGER JAG
   res.status(200).json({success:true });
 
 });
 
 router.get("/rateneg",function(req,res){
-  var id = req.body.id;
+  var id = req.query.id;
   Recipe.rateNeg(id);
   // TODO IF FAIL DONT RESPONSE 200
   res.status(200).json({success:true });

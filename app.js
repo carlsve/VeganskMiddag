@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var path = require("path");
 var session = require("express-session");
 var flash = require("connect-flash");
-
+var bodyParser = require('body-parser');
 var routes = require(__dirname + "/routes");
 
 var app = express();
@@ -17,6 +17,8 @@ var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 
                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 
 var mongodbUri = 'mongodb://admin:admin@ds141450.mlab.com:41450/veganrecipes';
+
+
 
 mongoose.connect(mongodbUri, options);
 app.set("port", process.env.PORT || 3000);
@@ -32,6 +34,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(flash());
 app.use(routes);
 

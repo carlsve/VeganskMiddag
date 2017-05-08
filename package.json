@@ -6,6 +6,7 @@
     "start": "node app"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "connect-flash": "latest",
     "ejs": "latest",
     "express": "latest",
@@ -13,8 +14,8 @@
     "mongodb": "latest",
     "mongoose": "latest",
     "mongoose-simple-random": "^0.3.3",
-    "x-ray": "latest",
-    "underscore": "latest"
+    "underscore": "latest",
+    "x-ray": "latest"
   },
   "engine": {
     "node": "4.2.x"
