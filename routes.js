@@ -1,8 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
-
 var Recipe = require(__dirname + "/model/recipe-model");
-
 var router = express.Router();
 
 router.use((req, res, next) => {
@@ -20,6 +18,7 @@ for the package call.
 router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     if (err) {
         console.log(err);
+        res.status(500).json({status:"fail", error:err});
     } else {
         console.log("Sent data: " + recipe);
         res.render('index', {
@@ -33,26 +32,21 @@ router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
 router.get("/ratepos",function(req,res){
   var id = req.query.id;
   Recipe.ratePos(id);
-
-  // TODO IF FAIL DONT RESPONSE 200 men vad kan faila frågar du dig. INGET SÄGER JAG
   res.status(200).json({success:true });
-
 });
 
 router.get("/rateneg",function(req,res){
   var id = req.query.id;
   Recipe.rateNeg(id);
-  // TODO IF FAIL DONT RESPONSE 200
   res.status(200).json({success:true });
-
 });
 
 
 router.get("/api", (req, res, next) => Recipe.findRandom((err, recipe) => {
   if (err) {
     console.log(err);
+    res.status(500).json({status:"fail", error: err});
   } else {
-    console.log("Sent api jsondata: ", recipe);
     res.status(200).json({ recipe });
   }
 }));

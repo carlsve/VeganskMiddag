@@ -18,8 +18,6 @@ var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 
 
 var mongodbUri = 'mongodb://admin:admin@ds141450.mlab.com:41450/veganrecipes';
 
-
-
 mongoose.connect(mongodbUri, options);
 app.set("port", process.env.PORT || 3000);
 
