@@ -20,15 +20,22 @@ mongoose.connect(mongodbUri, options);
 
 // set the port for the app
 app.set("port", process.env.PORT || 3000);
+
 // set view folder and view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// set our static folder
 app.use(express.static(__dirname + '/public'));
+
+// add a json bodyparser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// our routes
 app.use(routes);
 
+//start listening for clients
 app.listen(app.get("port"), function() {
     console.log("Server started on port " + app.get("port"));
 });

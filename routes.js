@@ -8,6 +8,7 @@ var mixpanel = Mixpanel.init('de5b7857b264f7d851bfbd18cadc9c1f', {
 });
 
 
+// get 10 heighest rated recipes
 router.get('/gettoplist', function(req,res){
   Recipe.heighestRatedRecipes().then(function(recipes){
       res.status(200).json(recipes);

@@ -19,8 +19,10 @@ var recipeSchema = mongoose.Schema({
   site: { type: String, require: true },
   createdAt: { type: Date, default: Date.now }
 });
+
 var Recipe = mongoose.model("Recipe", recipeSchema);
 module.exports = Recipe;
+
 /*
 getRecipe returns data from mongodb storage,
 in the form of:
