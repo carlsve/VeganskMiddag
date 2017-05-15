@@ -5,8 +5,8 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var bodyParser = require('body-parser');
 var routes = require(__dirname + "/routes");
-
 var app = express();
+
 /*
 * Mongoose by default sets the auto_reconnect option to true.
 * We recommend setting socket options at both the server and replica set level.

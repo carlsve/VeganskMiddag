@@ -7,15 +7,15 @@
   },
   "dependencies": {
     "body-parser": "^1.17.1",
-    "connect-flash": "latest",
-    "ejs": "latest",
-    "express": "latest",
-    "express-session": "latest",
-    "mongodb": "latest",
-    "mongoose": "latest",
-    "mongoose-simple-random": "^0.3.3",
-    "underscore": "latest",
-    "x-ray": "latest"
+    "connect-flash": "0.1.1",
+    "ejs": "2.5.6",
+    "express": "4.15.2",
+    "express-session": "1.15.2",
+    "mongodb": "2.2.26",
+    "mongoose": "4.9.9",
+    "mongoose-simple-random": "0.3.3",
+    "underscore": "1.8.3",
+    "x-ray": "2.3.2"
   },
   "engine": {
     "node": "4.2.x"
