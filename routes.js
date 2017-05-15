@@ -22,27 +22,31 @@ for the package call.
 router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     if (err) {
         console.log(err);
+        mixpanel.track('home_page_ERROR');
         res.status(500).json({status:"fail", error:err});
     } else {
         console.log("Sent data: " + recipe);
+        mixpanel.track('home_page');
         res.render('index', {
             link: recipe[0].url,
             recipe: recipe[0].name,
             title: recipe[0].name
         });
     }
-    mixpanel.track('home_page');
 }));
 
 router.get("/ratepos",function(req,res){
   var id = req.query.id;
   Recipe.ratePos(id);
   res.status(200).json({success:true });
+  mixpanel.track('rate_pos');
+
 });
 
 router.get("/rateneg",function(req,res){
   var id = req.query.id;
   Recipe.rateNeg(id);
+  mixpanel.track('rate_neg');
   res.status(200).json({success:true });
 });
 
@@ -50,8 +54,10 @@ router.get("/rateneg",function(req,res){
 router.get("/api", (req, res, next) => Recipe.findRandom((err, recipe) => {
   if (err) {
     console.log(err);
+    mixpanel.track('api_call_ERROR');
     res.status(500).json({status:"fail", error: err});
   } else {
+    mixpanel.track('api_call');
     res.status(200).json({ recipe });
   }
 }));
