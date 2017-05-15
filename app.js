@@ -15,26 +15,18 @@ var app = express();
 */
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
-
 var mongodbUri = 'mongodb://admin:admin@ds141450.mlab.com:41450/veganrecipes';
-
 mongoose.connect(mongodbUri, options);
+
+// set the port for the app
 app.set("port", process.env.PORT || 3000);
-
-app.use(express.static(__dirname + '/public'));
-
+// set view folder and view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(session({
-    secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
-    resave: true,
-    saveUninitialized: true
-}));
-
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(flash());
 app.use(routes);
 
 app.listen(app.get("port"), function() {

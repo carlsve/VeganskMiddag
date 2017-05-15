@@ -19,7 +19,8 @@ var recipeSchema = mongoose.Schema({
   site: { type: String, require: true },
   createdAt: { type: Date, default: Date.now }
 });
-
+var Recipe = mongoose.model("Recipe", recipeSchema);
+module.exports = Recipe;
 /*
 getRecipe returns data from mongodb storage,
 in the form of:
@@ -34,18 +35,41 @@ recipeSchema.methods.getRecipe = function () {
   };
 };
 
-recipeSchema.methods.ratePos = function(id){
-  Recipe.update(
-        { _id: id },
-        { $inc: { rate: 1 } }
-    );
+// get 10 highest rated recipes
+module.exports.heighestRatedRecipes = function(){
+  return new Promise(function(resolve, reject){
+    var query = Recipe.find();
+    query.sort({'rate': -1});
+    query.limit(10);
+    query.exec(function(error, docs){
+      if (error) { reject(error); }
+        resolve(docs);
+    });
+  });
 }
 
-recipeSchema.methods.rateNeg = function(id){
-  Recipe.update(
-        { _id: id },
-        { $inc: { rate: -1 } }
-    );
+/*
+* Rate a recipe (+1)
+*/
+module.exports.ratePos = function(id){
+  Recipe.findByIdAndUpdate(
+    id,
+    {$inc: {"rate": 1 }},
+    function(err, document) {
+      console.log(err);
+    });
+}
+
+/*
+* Rate a recipe (-1)
+*/
+module.exports.rateNeg = function(id){
+  Recipe.findByIdAndUpdate(
+    id,
+    {$inc: {"rate": -1 }},
+    function(err, document) {
+      console.log(err);
+    });
 }
 
 /*
@@ -54,6 +78,3 @@ use the package to get a random Recipe from the mongolab database.
 Check routes.js, and look up "mongoose-simple-random" npm package
 */
 recipeSchema.plugin(random);
-
-var Recipe = mongoose.model("Recipe", recipeSchema);
-module.exports = Recipe;

@@ -7,11 +7,11 @@ var mixpanel = Mixpanel.init('de5b7857b264f7d851bfbd18cadc9c1f', {
     protocol: 'https'
 });
 
-router.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
-    next();
+
+router.get('/gettoplist', function(req,res){
+  Recipe.heighestRatedRecipes().then(function(recipes){
+      res.status(200).json(recipes);
+  });
 });
 
 /*
@@ -35,6 +35,7 @@ router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
     }
 }));
 
+// Route for rating a recipe (+1)
 router.get("/ratepos",function(req,res){
   var id = req.query.id;
   Recipe.ratePos(id);
@@ -42,7 +43,7 @@ router.get("/ratepos",function(req,res){
   mixpanel.track('rate_pos');
 
 });
-
+// Route for rating a recipe (-1)
 router.get("/rateneg",function(req,res){
   var id = req.query.id;
   Recipe.rateNeg(id);
@@ -50,7 +51,7 @@ router.get("/rateneg",function(req,res){
   res.status(200).json({success:true });
 });
 
-
+// Route for getting a json with a recipe
 router.get("/api", (req, res, next) => Recipe.findRandom((err, recipe) => {
   if (err) {
     console.log(err);
