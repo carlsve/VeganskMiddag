@@ -2,10 +2,7 @@ var express = require("express");
 var mongoose = require("mongoose");
 var Recipe = require(__dirname + "/model/recipe-model");
 var router = express.Router();
-var Mixpanel = require('mixpanel');
-var mixpanel = Mixpanel.init('de5b7857b264f7d851bfbd18cadc9c1f', {
-    protocol: 'https'
-});
+
 
 router.use((req, res, next) => {
     res.locals.currentUser = req.user;
@@ -31,7 +28,6 @@ router.get("/", (req, res, next) => Recipe.findRandom((err, recipe) => {
             title: recipe[0].name
         });
     }
-    mixpanel.track('home_page');
 }));
 
 router.get("/ratepos",function(req,res){
