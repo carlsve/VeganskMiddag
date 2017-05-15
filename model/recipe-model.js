@@ -20,8 +20,16 @@ var recipeSchema = mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+/*
+We have to plugin a package to the mongoose model, so we can later
+use the package to get a random Recipe from the mongolab database.
+Check routes.js, and look up "mongoose-simple-random" npm package
+*/
+recipeSchema.plugin(random);
+
 var Recipe = mongoose.model("Recipe", recipeSchema);
 module.exports = Recipe;
+
 
 /*
 getRecipe returns data from mongodb storage,
@@ -73,10 +81,3 @@ module.exports.rateNeg = function(id){
       console.log(err);
     });
 }
-
-/*
-We have to plugin a package to the mongoose model, so we can later
-use the package to get a random Recipe from the mongolab database.
-Check routes.js, and look up "mongoose-simple-random" npm package
-*/
-recipeSchema.plugin(random);
